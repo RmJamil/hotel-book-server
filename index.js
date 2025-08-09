@@ -1,18 +1,21 @@
 const express = require('express')
 var admin = require("firebase-admin");
 
-// var serviceAccount = require("./Firebase-admin-key.json");
-admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_KEY)),
-});
-
-const app = express()
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const port =process.env.PORT|| 3000;
-
 const dotenv = require('dotenv')
 dotenv.config();
 var cors = require('cors')
+const port =process.env.PORT|| 3000;
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_KEY);
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
+
+const app = express()
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+
+
+
 
 
 console.log(process.env.DB_USER)
@@ -88,10 +91,10 @@ async function run() {
 
     //  const database = client.db("usersDb");
     // const jobdes= database.collection("jobs");
-    const roomsCollection=client.db('HotelManage').collection('hotel-room');
-    const myBookings=client.db('HotelManage').collection('MyBookings');
-    const allrev=client.db('HotelManage').collection('allreviews');
-    const allserv=client.db('HotelManage').collection('services');
+    const roomsCollection=client.db('HotelRoom').collection('hotel-room');
+    const myBookings=client.db('HotelRoom').collection('MyBookings');
+    const allrev=client.db('HotelRoom').collection('allreviews');
+    const allserv=client.db('HotelRoom').collection('services');
 
     // app.get('/rooms',async(req,res)=>{
     //   const rooms=roomsCollection.find();
