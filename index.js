@@ -275,17 +275,6 @@ reviews: {$each: reviews}
   // res.send(result)
 })
 
-// app.put('/updatepost/:id',async (req, res) => {
-//   const id= req.params.id;
-//    const filter = { _id:new ObjectId(id) };
-//    const updatedJob=req.body;
-//    const options={upsert:true};
-//    const updatedDoc={
-//     $set:updatedJob
-//    }
-//    const result = await jobdes.updateOne(filter,updatedDoc,options);
-//   res.send(result);
-// })
 
 
 
