@@ -183,11 +183,11 @@ app.get('/rooms', async (req, res) => {
   let sortOption = {};
 
   if (sort === 'low') {
-    sortOption = { rent: 1 }; // Ascending by rent
+    sortOption = { rent: 1 }; 
   } else if (sort === 'high') {
-    sortOption = { rent: -1 }; // Descending by rent
+    sortOption = { rent: -1 }; 
   } else {
-    sortOption = { room_number: 1 }; // Default: ascending room_number
+    sortOption = { room_number: 1 };
   }
 
   try {
@@ -239,7 +239,7 @@ date:selected
    const history=await myBookings.find().toArray();
     
       res.send({history,result});
-  // res.send(result)
+
 })
 app.patch('/review',async(req,res)=>{
   console.log(req.body);
