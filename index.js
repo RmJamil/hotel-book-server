@@ -107,6 +107,17 @@ async function run() {
     
       res.send(history);
     })
+    app.get('/discount',async(req,res)=>{
+      
+      const query={
+      $or: [
+        { totalBookings: { $lt: 3 } },       // less than 3
+        { totalBookings: { $exists: false } } // no field yet
+      ]
+    };
+    const history=await roomsCollection.find(query).toArray();
+      res.send(history);
+    })
     app.get('/service',async(req,res)=>{
       
       const result=await allserv.find().toArray();
@@ -141,9 +152,17 @@ app.get('/rooms/reviews', async (req, res) => {
     app.post('/rooms/booked', async(req, res) => {
         const booked=req.body;
         console.log(booked)
-        const result=await myBookings.insertOne(booked);
+   
+        const total=await roomsCollection.updateOne(
+       
+             { room_number: booked.roomNo },
+            {$inc:{totalBookings:1}}
+        
+        )
+        console.log(total);
+             const result=await myBookings.insertOne(booked);
         res.send(result);
-  res.send('Got a POST request')
+
 })
     app.post('/rooms/reviews', async(req, res) => {
         const rev=req.body;
