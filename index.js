@@ -171,13 +171,10 @@ app.get('/rooms/reviews', async (req, res) => {
         
          const review=await allrev.find().toArray();
         res.send({result,review});
-  // res.send('Got a POST request')
+ 
 })
 
-// app.get('/addtask',async(req,res)=>{
-//     result= await jobdes.find().toArray();
-//     res.send(result);
-// })
+
 app.get('/rooms', async (req, res) => {
   const sort = req.query.sort;
   let sortOption = {};
